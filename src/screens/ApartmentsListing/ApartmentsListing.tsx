@@ -10,7 +10,7 @@ const ApartmentsListing: FC = ({ navigation }) => {
 
 
   // navigate to the ApartmentDetails screen
-  function handlePressedCard(apartmentId: number) {
+  function handlePressedCard(apartmentId: number): void {
     navigation.navigate('Apartment Details', {
       apartmentId
     });
@@ -18,7 +18,7 @@ const ApartmentsListing: FC = ({ navigation }) => {
   }
 
   useEffect(() => {
-    async function fetchApartments() {
+    async function fetchApartments(): Promise<void> {
       try {
         const res = await axios.get('http://192.168.1.15:5000/api/v1/apartments');
         setApartments(res.data.response);

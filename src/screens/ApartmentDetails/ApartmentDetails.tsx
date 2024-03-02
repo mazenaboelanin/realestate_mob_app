@@ -13,7 +13,7 @@ const ApartmentDetails: FC = ({route, navigation}) => {
   const { apartmentId } = route.params;
 
   useEffect(() => {
-    async function fetchApartmentById() {
+    async function fetchApartmentById(): Promise<void> {
       try {
         const res = await axios(`http://192.168.1.15:5000/api/v1/apartments/${apartmentId}`);
         setApartment(res.data.response);
