@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, Pressable, StyleSheet, Text, View } from "react-native";
 import Apartment from "../../models/Apartment";
 
 const ApartmentsListing = ({ navigation }) => {
@@ -31,15 +31,27 @@ const ApartmentsListing = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {/* <Text>Apartments Listing</Text> */}
-      {apartments.map((apartment: any) => ( 
-      <Pressable 
-        key={apartment?.id} 
-        style={styles.pressableContainer} 
-        onPress={handlePressedCard.bind(null, apartment.id)}>
-        <Text>{apartment?.title}</Text>
-      </Pressable>
-      ))}
+      <FlatList 
+      data={apartments} 
+      renderItem={({ item }) => (
+        <Pressable
+          style={styles.pressableContainer}
+          onPress={() => handlePressedCard(item.id)}
+          >
+          <Image
+          style={styles.apartmentImage}
+          source={{
+            uri: item.imageUrl,
+          }}
+          />
+          <View style={styles.apartmentData}>
+            <Text>{item.title}</Text>
+            <Text>Compound: {item.compound}</Text>
+            <Text>Price: {item.price}</Text>
+          </View>
+        </Pressable>
+      )}
+    />
     </View>
   );
 }
@@ -48,13 +60,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 40,
   },
   pressableContainer: {
-    height:100,
+    height: 200,
     backgroundColor: 'beige',
     marginBottom: 10,
+    elevation: 5,
+  },
+  apartmentImage: {
+    width: '100%',
+    height: 100,
+  },
+  apartmentData: {
+    padding: 10,
   }
 });
 
