@@ -3,10 +3,9 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import Apartment from "../../models/Apartment";
 import axios from "axios";
 
-const ApartmentDetails = ({route}) => {
+const ApartmentDetails = ({route, navigation}) => {
   const [apartment, setApartment] = useState<Apartment>();
   const { apartmentId } = route.params;
-
 
   useEffect(() => {
     async function fetchApartmentById() {
@@ -19,6 +18,13 @@ const ApartmentDetails = ({route}) => {
     }
     fetchApartmentById();
   }, [apartmentId]);
+
+    // set the title of the screen
+    useEffect(() => {
+      if (apartment) {
+        navigation.setOptions({ title: apartment.title });
+      }
+    }, [apartment, navigation]);
 
   return (
     <View>
