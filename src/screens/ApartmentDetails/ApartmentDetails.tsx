@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import Apartment from "../../models/Apartment";
 import axios from "axios";
@@ -8,7 +8,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
 
-const ApartmentDetails = ({route, navigation}) => {
+const ApartmentDetails: FC = ({route, navigation}) => {
   const [apartment, setApartment] = useState<Apartment>();
   const { apartmentId } = route.params;
 
