@@ -13,9 +13,9 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="apartments" component={ApartmentsListing} />
-          <Stack.Screen name="apartmentDetails" component={ApartmentDetails} />
+        <Stack.Navigator initialRouteName="Apartments">
+          <Stack.Screen name="Apartments" component={ApartmentsListing} />
+          <Stack.Screen name="Apartment Details" component={ApartmentDetails} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
