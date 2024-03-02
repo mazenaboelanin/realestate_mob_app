@@ -5,6 +5,8 @@ import Apartment from "../../models/Apartment";
 import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
+const baseUrl = 'http://192.168.1.15:5000/api/v1';
+
 const ApartmentsListing: FC = ({ navigation }) => {
   const [apartments, setApartments] = useState<Apartment[]>([]);
 
@@ -20,7 +22,7 @@ const ApartmentsListing: FC = ({ navigation }) => {
   useEffect(() => {
     async function fetchApartments(): Promise<void> {
       try {
-        const res = await axios.get('http://192.168.1.15:5000/api/v1/apartments');
+        const res = await axios.get(`${baseUrl}/apartments`);
         setApartments(res.data.response);
 
       } catch (error) {
