@@ -1,12 +1,24 @@
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
+import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import ApartmentsListing from './src/screens/ApartmentsListing/ApartmentsListing';
+import ApartmentDetails from './src/screens/ApartmentDetails/ApartmentDetails';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar style="light" />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="apartments" component={ApartmentsListing} />
+          <Stack.Screen name="apartmentDetails" component={ApartmentDetails} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
 
