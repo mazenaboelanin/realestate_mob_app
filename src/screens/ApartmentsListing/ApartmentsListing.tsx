@@ -1,10 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import Apartment from "../../models/Apartment";
 
-const ApartmentsListing = () => {
+const ApartmentsListing = ({ navigation }) => {
   const [apartments, setApartments] = useState<Apartment[]>([]);
+
+
+  function handlePressedCard(apartmentId: number) {
+    console.log('Card pressed');
+    navigation.navigate('Apartment Details', {
+      apartmentId
+    });
+
+  }
 
   useEffect(() => {
     async function fetchApartments() {
@@ -21,11 +30,34 @@ const ApartmentsListing = () => {
   }, []);
 
   return (
-    <View>
-      <Text>Apartments Listing</Text>
-      {apartments.map((apartment: any) => ( <Text key={apartment?.id}>{apartment?.title}</Text>))}
+    <View style={styles.container}>
+      {/* <Text>Apartments Listing</Text> */}
+      {apartments.map((apartment: any) => ( 
+      <Pressable 
+        key={apartment?.id} 
+        style={styles.pressableContainer} 
+        onPress={handlePressedCard.bind(null, apartment.id)}>
+        <Text>{apartment?.title}</Text>
+      </Pressable>
+      ))}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  pressableContainer: {
+    height:100,
+    backgroundColor: 'beige',
+    marginBottom: 10,
+  }
+});
+
+
 
 export default ApartmentsListing;
