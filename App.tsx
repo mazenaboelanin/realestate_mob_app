@@ -13,7 +13,13 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Apartments">
+        <Stack.Navigator 
+          initialRouteName="Apartments" 
+          screenOptions={{
+            headerTintColor: 'white',
+            headerStyle: { backgroundColor: '#1976D2' },
+          }}
+          >
           <Stack.Screen name="Apartments" component={ApartmentsListing} />
           <Stack.Screen name="Apartment Details" component={ApartmentDetails} />
         </Stack.Navigator>

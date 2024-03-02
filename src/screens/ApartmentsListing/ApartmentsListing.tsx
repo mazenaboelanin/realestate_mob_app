@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   pressableContainer: {
     height: 200,
-    backgroundColor: 'beige',
+    backgroundColor: '#c8e1f7',
     marginBottom: 10,
     elevation: 5,
   },
