@@ -7,7 +7,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
-const baseUrl = 'http://192.168.1.15:5000/api/v1';
+const BASE_URL = 'http://localhost:5000/api/v1';
 
 const ApartmentDetails: FC = ({route, navigation}) => {
   const [apartment, setApartment] = useState<Apartment>();
@@ -16,8 +16,8 @@ const ApartmentDetails: FC = ({route, navigation}) => {
   useEffect(() => {
     async function fetchApartmentById(): Promise<void> {
       try {
-        const res = await axios(`${baseUrl}/apartments/${apartmentId}`);
-        setApartment(res.data.response);
+        const res = await axios(`${BASE_URL}/apartments/${apartmentId}`);
+        setApartment(res.data.response.data);
       } catch (error) {
         throw new Error('Error fetching apartment by id');
       }
